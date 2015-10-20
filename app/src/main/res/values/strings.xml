@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PhotoGrid</string>
+    <string name="network_error">Network due to loading images</string>
+    <string name="query_hint">Enter the query to search</string>
+    <string name="search_action">Search</string>
+    <string name="gallery_activity_name">Gallery of results</string>
+    <string name="check_network">Check the internet connection</string>
+</resources>
