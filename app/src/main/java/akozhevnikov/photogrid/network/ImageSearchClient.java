@@ -7,7 +7,7 @@ import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 
 public class ImageSearchClient {
-    final String BASE_URL = "https://www.googleapis.com";
+    private static final String BASE_URL = "https://www.googleapis.com";
 
     private ImageSearchService service;
     private String query;

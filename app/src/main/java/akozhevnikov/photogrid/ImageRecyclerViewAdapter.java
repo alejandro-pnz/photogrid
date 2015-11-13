@@ -12,7 +12,6 @@ import java.util.List;
 
 import akozhevnikov.photogrid.network.ImageItem;
 
-
 public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<ImageViewHolder> {
 
     private List<ImageItem> itemList;

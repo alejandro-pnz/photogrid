@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,6 @@ import akozhevnikov.photogrid.network.NetworkUtils;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
 
 public class GalleryActivity extends AppCompatActivity {
 
@@ -66,11 +66,12 @@ public class GalleryActivity extends AppCompatActivity {
                 new Callback<ImageResponse>() {
                     @Override
                     public void success(ImageResponse imageResponse, Response response) {
-                        for (ImageItem item : imageResponse.getItems()) {
+                        List<ImageItem> items = imageResponse.getItems();
+                        for (ImageItem item : items) {
                             images.add(item);
                         }
                         imageAdapter.notifyDataSetChanged();
-                        currentStartPosition += Utils.ITEMS_COUNT;
+                        currentStartPosition += items.size();
                         loading = false;
                     }
 
@@ -95,9 +96,11 @@ public class GalleryActivity extends AppCompatActivity {
             if (lastItem > 0 && lastItem > images.size() - Utils.ITEMS_COUNT && !loading) {
                 if (NetworkUtils.hasConnection(GalleryActivity.this)) {
                     loadMoreData();
+                } else {
+                    Toast.makeText(GalleryActivity.this, R.string.network_error,
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
-
 }
